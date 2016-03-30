@@ -8,16 +8,35 @@ import React, {
     Component,
     StyleSheet,
     Text,
-    View
+    View,
+    ListView,
+    Image
     } from "react-native";
+
+import logoList from "./config/app.json";
+
+
+class DemoComponent extends Component {
+    constructor(props) {
+        super(props);
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.state = {data: ds.cloneWithRows(logoList)}
+    }
+
+    render() {
+        return (
+            <ListView dataSource={this.state.data}
+                      renderRow={(logoURI => <Image style={styles.thumb} source={{uri: logoURI}}></Image>)}>
+            </ListView>);
+    }
+}
 
 class trial extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    Welcome to React Native!
-                </Text>
+                <DemoComponent style={styles.welcome}>
+                </DemoComponent>
                 <Text style={styles.instructions}>
                     To get started, edit index.android.js
                 </Text>
@@ -36,10 +55,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F5FCFF'
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10
+    thumb: {
+        width: 64,
+        height: 64,
     },
     instructions: {
         textAlign: 'center',
