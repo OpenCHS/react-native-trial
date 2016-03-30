@@ -1,8 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-
 import React, {
     AppRegistry,
     Component,
@@ -56,8 +51,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF'
     },
     thumb: {
-        width: 64,
-        height: 64,
+        width: 80,
+        height: 80,
+        resizeMode: 'contain'
     },
     instructions: {
         textAlign: 'center',
